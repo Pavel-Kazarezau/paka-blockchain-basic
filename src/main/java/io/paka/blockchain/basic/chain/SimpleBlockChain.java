@@ -1,5 +1,6 @@
 package io.paka.blockchain.basic.chain;
 
+import com.google.gson.GsonBuilder;
 import io.paka.blockchain.basic.block.Block;
 
 import java.util.ArrayList;
@@ -30,8 +31,6 @@ public class SimpleBlockChain implements BlockChain{
 
     @Override
     public String toString() {
-        return "SimpleBlockChain{" +
-                "blocks=" + blocks +
-                '}';
+        return new GsonBuilder().setPrettyPrinting().create().toJson(this);
     }
 }
