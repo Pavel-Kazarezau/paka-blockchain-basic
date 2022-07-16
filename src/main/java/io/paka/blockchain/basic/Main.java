@@ -2,9 +2,10 @@ package io.paka.blockchain.basic;
 
 import io.paka.blockchain.basic.block.Block;
 import io.paka.blockchain.basic.block.impl.SimpleBlock;
+import io.paka.blockchain.basic.chain.BlockChain;
+import io.paka.blockchain.basic.chain.SimpleBlockChain;
 import io.paka.blockchain.basic.hash.HashProvider;
 import io.paka.blockchain.basic.hash.impl.Sha256HashProvider;
-import io.paka.blockchain.basic.hash.impl.StabHashProvider;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,5 +16,11 @@ public class Main {
 
         System.out.println(genesisBlock);
         System.out.println(secondBlock);
+
+        BlockChain chain = new SimpleBlockChain();
+        chain.add(genesisBlock);
+        chain.add(secondBlock);
+
+        System.out.println(chain);
     }
 }
