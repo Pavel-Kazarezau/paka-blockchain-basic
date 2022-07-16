@@ -1,5 +1,6 @@
 package io.paka.blockchain.basic.block.impl;
 
+import com.google.gson.GsonBuilder;
 import io.paka.blockchain.basic.block.Block;
 import io.paka.blockchain.basic.hash.HashProvider;
 
@@ -33,11 +34,6 @@ public class SimpleBlock implements Block {
 
     @Override
     public String toString() {
-        return "SimpleBlock{" +
-                "hash='" + hash + '\'' +
-                ", previousHash='" + previousHash + '\'' +
-                ", data=" + data +
-                ", timestamp=" + timestamp +
-                '}';
+        return new GsonBuilder().setPrettyPrinting().create().toJson(this);
     }
 }
