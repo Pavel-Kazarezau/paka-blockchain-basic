@@ -28,7 +28,7 @@ public class SimpleBlock implements Block {
     private void completeBlock(HashProvider hashProvider) {
         hash = hashProvider.applyEncryption(
                 previousHash
-                        + data.getClass()
+                        + data.toString()
                         + timestamp.toString());
     }
 
