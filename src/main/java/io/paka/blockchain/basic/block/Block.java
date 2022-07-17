@@ -13,4 +13,8 @@ public interface Block {
      * @return hash of block
      */
     String hash();
+
+    String previousHash();
+
+    String calculateHash(HashProvider hashProvider);
 }
