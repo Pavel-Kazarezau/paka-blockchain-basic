@@ -8,5 +8,7 @@ public interface BlockChain {
 
     void add(Block block);
 
+    boolean isChainValid();
+
     List<Block> getBlocks();
 }
