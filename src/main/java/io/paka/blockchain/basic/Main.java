@@ -13,6 +13,8 @@ public class Main {
         HashProvider provider = new Sha256HashProvider();
         Block genesisBlock = new SimpleBlock("Hello, I'm first block in the chain", "Genesis", provider);
         Block secondBlock = new SimpleBlock("Hello, I'm second block in the chain", genesisBlock.hash(), provider);
+        Block thirdBlock = new SimpleBlock("Hello, I'm third block in the chain", secondBlock.hash(), provider);
+        Block fourthBlock = new SimpleBlock("Hello, I'm fourth block in the chain", thirdBlock.hash(), provider);
 
         System.out.println(genesisBlock);
         System.out.println(secondBlock);
@@ -20,7 +22,15 @@ public class Main {
         BlockChain chain = new SimpleBlockChain();
         chain.add(genesisBlock);
         chain.add(secondBlock);
-
+        chain.add(thirdBlock);
+        chain.add(fourthBlock);
         System.out.println(chain);
+
+
+        if (chain.isChainValid()) {
+            System.out.println("VALID!");
+        } else {
+            System.out.println("CHAIN INVALID");
+        }
     }
 }
