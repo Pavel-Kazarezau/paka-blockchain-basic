@@ -7,8 +7,7 @@ import io.paka.blockchain.basic.hash.HashProvider;
 import java.time.Instant;
 
 public class SimpleBlock implements Block {
-    private String hash;
-
+    private final String hash;
     private final String previousHash;
     private final Object data;
     private final Instant timestamp;
@@ -17,7 +16,7 @@ public class SimpleBlock implements Block {
         this.data = data;
         this.previousHash = previousHash;
         this.timestamp = Instant.now();
-        this.completeBlock(hashProvider);
+        this.hash = calculateHash(hashProvider);
     }
 
     @Override
@@ -25,8 +24,14 @@ public class SimpleBlock implements Block {
         return this.hash;
     }
 
-    private void completeBlock(HashProvider hashProvider) {
-        hash = hashProvider.applyEncryption(
+    @Override
+    public String previousHash() {
+        return this.previousHash;
+    }
+
+    @Override
+    public String calculateHash(HashProvider hashProvider) {
+        return hashProvider.applyEncryption(
                 previousHash
                         + data.toString()
                         + timestamp.toString());
